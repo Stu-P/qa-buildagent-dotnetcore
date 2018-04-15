@@ -19,10 +19,9 @@ pipeline {
 			}
 		}				
 		stage("Push Image to ECR")  {
-		    steps { //, 'ecr:us-east-1:demo-ecr-credentials'
+		    steps { 
                 script{ 
-					docker.withRegistry("http://250658028269.dkr.ecr.ap-southeast-2.amazonaws.com",'ecr:ap-southeast-2:ecr-credentials') {
-                    	docker.image("${imageName}").push("latest")
+					sh "docker push \"250658028269.dkr.ecr.ap-southeast-2.amazonaws.com/${imageName}:latest\""
 					}
                 }
  			}
