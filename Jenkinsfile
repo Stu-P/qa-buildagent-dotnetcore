@@ -21,15 +21,11 @@ pipeline {
 		stage("Push Image to ECR")  {
 		    steps { 
                 script{ 
-					sh "docker push \"250658028269.dkr.ecr.ap-southeast-2.amazonaws.com/${imageName}:latest\""
-					
-					
-					//  docker.withRegistry('https://registry.example.com', 'credentials-id') {
-        			// 	def customImage = docker.build("my-image:${env.BUILD_ID}")
-					// 	/* Push the container to the custom Registry */
-					// 	customImage.push()
-					// }
-					
+					//sh "docker push \"250658028269.dkr.ecr.ap-southeast-2.amazonaws.com/${imageName}:latest\""
+					docker.withRegistry("http://250658028269.dkr.ecr.ap-southeast-2.amazonaws.com") {
+                    	docker.image("${imageName}").push("latest")
+
+					}
 				}
 			}
 		}
