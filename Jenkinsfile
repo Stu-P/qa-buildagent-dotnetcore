@@ -13,7 +13,8 @@ pipeline {
 		stage("Build Docker Image") {
 			steps {
 				script{
-				docker.build("${imageName}:${env.BUILD_ID}")
+				//docker.build("${imageName}:${env.BUILD_ID}")
+				docker.build("${imageName}:latest")
 				}
 			}
 		}				
@@ -21,7 +22,7 @@ pipeline {
 		    steps { //, 'ecr:us-east-1:demo-ecr-credentials'
                 script{ 
 					docker.withRegistry("http://250658028269.dkr.ecr.ap-southeast-2.amazonaws.com/${imageName}") {
-                    	docker.image("${imageName}").push("${env.BUILD_ID}")
+                    	docker.image("${imageName}").push("latest")
 					}
                 }
  			}
