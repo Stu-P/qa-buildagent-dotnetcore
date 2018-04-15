@@ -21,7 +21,7 @@ pipeline {
 		    steps { //, 'ecr:us-east-1:demo-ecr-credentials'
                 script{ 
 					docker.withRegistry("http://250658028269.dkr.ecr.ap-southeast-2.amazonaws.com/${imageName}") {
-                    	docker.image("${imageName}").push('latest')
+                    	docker.image("${imageName}").push("${env.BUILD_ID}")
 					}
                 }
  			}
