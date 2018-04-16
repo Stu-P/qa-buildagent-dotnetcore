@@ -24,11 +24,10 @@ pipeline {
                 script{ 
 
 					sh "echo $PATH"
-					sh "docker push \"250658028269.dkr.ecr.ap-southeast-2.amazonaws.com/${imageName}:latest\""
-					// docker.withRegistry("http://250658028269.dkr.ecr.ap-southeast-2.amazonaws.com") {
-                    // 	docker.image("${imageName}").push("latest")
-
-					// }
+				//	sh "docker push \"250658028269.dkr.ecr.ap-southeast-2.amazonaws.com/${imageName}:latest\""
+					docker.withRegistry("http://250658028269.dkr.ecr.ap-southeast-2.amazonaws.com") {
+                    	docker.image("${imageName}").push("latest")
+					}
 				}
 			}
 		}
