@@ -2,7 +2,8 @@ def imageName = 'qa-buildagent-dotnetcore'
 
 pipeline {
 	agent  { label 'docker' } 	
-//	environment {
+	//environment {
+//
 //	}
 
 	options { 
@@ -21,11 +22,11 @@ pipeline {
 		stage("Push Image to ECR")  {
 		    steps { 
                 script{ 
-					//sh "docker push \"250658028269.dkr.ecr.ap-southeast-2.amazonaws.com/${imageName}:latest\""
-					docker.withRegistry("http://250658028269.dkr.ecr.ap-southeast-2.amazonaws.com") {
-                    	docker.image("${imageName}").push("latest")
+					sh "docker push \"250658028269.dkr.ecr.ap-southeast-2.amazonaws.com/${imageName}:latest\""
+					// docker.withRegistry("http://250658028269.dkr.ecr.ap-southeast-2.amazonaws.com") {
+                    // 	docker.image("${imageName}").push("latest")
 
-					}
+					// }
 				}
 			}
 		}
